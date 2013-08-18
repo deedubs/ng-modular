@@ -1,0 +1,17 @@
+{
+  "name": "ng-modular",
+  "version": "0.0.0",
+  "description": "ng-modular",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deedubs/ng-modular.git"
+  },
+  "author": "Dan Williams <me@deedubs.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deedubs/ng-modular/issues"
+  }
+}
