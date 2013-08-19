@@ -10,16 +10,26 @@ module.exports = function(grunt) {
         files: ['public/**/*.jade'],
         tasks: ['shell:compile-jade'],
         options: {
-          livereload: true
+          livereload: true,
+          spawn: false
         }
       },
+    },
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          base: 'public'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['watch','connect:keepalive']);
 }
 
 
