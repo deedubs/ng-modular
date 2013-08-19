@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var grunt = require('grunt');
+var package = require('../package.json');
+var modules = package.ngModular.modules;
+
+var vendorFiles = grunt.file.expand('public/js/vendor/*.js').reverse();
+var moduleFiles = modules.map(function (f) { return 'public/js/' + f + '/index.js'; });
+var projectFiles = grunt.file.expand('public/**/*.js');
+
+var files = vendorFiles
+  .concat([package.ngModular.main])
+  .concat(moduleFiles)
+  .concat(projectFiles);
+
+files = files.filter( function (name, value, self) {
+  return self.indexOf(name) === value;
+});
+
+files.forEach(function (f) {
+  console.log(f);
+});

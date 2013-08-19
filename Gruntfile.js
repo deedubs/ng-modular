@@ -1,8 +1,13 @@
+
+
 module.exports = function(grunt) {
   grunt.initConfig({
     shell: {
       "compile-jade": {
         command: "find public -type f -name '*.jade' | xargs ./node_modules/.bin/jade"
+      },
+      "build": {
+        command: "rm public/js/index.min.js; node ./bin/compile | xargs cat > build.js; mv build.js public/js/index.min.js; ./node_modules/.bin/uglify public/js/index.min.js -o public/js/index.min.js;"
       }
     },
     watch: {
@@ -28,8 +33,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('default', ['watch','connect:keepalive']);
+  grunt.registerTask('default', ['connect', 'watch']);
 }
 
 
